@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MenuController">
+   <children>
+      <Canvas height="700.0" layoutX="-3.0" layoutY="-2.0" width="906.0" />
+      <ListView fx:id="listview" fixedCellSize="-8.0" layoutY="68.0" prefHeight="634.0" prefWidth="160.0" style="-fx-background-color: #252525; -fx-border-color: #DADADA; -fx-border-width: 8;" />
+      <Pane layoutX="-2.0" prefHeight="66.0" prefWidth="671.0" style="-fx-background-color: #252525;">
+         <children>
+            <Circle fill="#dadee1" layoutX="82.0" layoutY="65.0" radius="51.0" rotate="1.3" stroke="#00000085" strokeType="INSIDE" strokeWidth="10.0" />
+            <ImageView fitHeight="77.0" fitWidth="75.0" layoutX="45.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@pictures/pnghut_ratatouille-auguste-gusteau-brad-bird-pixar-chef-remy-harsh.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="670.0" prefHeight="700.0" prefWidth="329.0" style="-fx-background-color: #9FC0F3;">
+         <children>
+            <Pane layoutX="-6.0" layoutY="-7.0" prefHeight="75.0" prefWidth="330.0" style="-fx-background-color: #DADADA;">
+               <children>
+                  <ImageView fitHeight="48.0" fitWidth="53.0" layoutX="251.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Downloads/icons8-cart-64.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="73.0" layoutY="23.0" prefHeight="40.0" prefWidth="135.0" text="CART">
+                     <font>
+                        <Font name="System Bold Italic" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <GridPane layoutX="19.0" layoutY="113.0" prefHeight="375.0" prefWidth="285.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Pane fx:id="CartPane1" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="quantity" layoutX="190.0" layoutY="36.0" onDragDetected="#ActionHandled" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: #ffffff;" text="   1" textAlignment="CENTER" />
+                        <Button fx:id="add" layoutX="148.0" layoutY="37.0" minWidth="36.0" mnemonicParsing="false" onAction="#ActionHandled" prefHeight="22.0" prefWidth="36.0" style="-fx-background-color: #BFBFBF;" />
+                        <Label fx:id="CartFood" layoutX="14.0" layoutY="15.0" onDragDetected="#ActionHandled" prefHeight="18.0" prefWidth="107.0" style="-fx-background-color: #DADADA;" text="Label" textFill="#262323">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="CartPrice" layoutX="14.0" layoutY="40.0" onDragDetected="#ActionHandled" prefHeight="18.0" prefWidth="86.0" text="Label" />
+                        <ImageView fitHeight="26.0" fitWidth="18.0" layoutX="157.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pictures/icons8-plus-+-48.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="subtract" layoutX="225.0" layoutY="36.0" minHeight="20.0" minWidth="18.0" mnemonicParsing="false" onAction="#ActionHandled" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: #BFBFBF;" />
+                        <ImageView fitHeight="26.0" fitWidth="18.0" layoutX="234.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pictures/icons8-minus-30.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </GridPane>
+            <ScrollBar fx:id="CartScroll" layoutX="307.0" layoutY="117.0" orientation="VERTICAL" prefHeight="367.0" prefWidth="18.0" />
+            <Label layoutX="30.0" layoutY="514.0" prefHeight="18.0" prefWidth="75.0" text="Sub Total ">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="Subtotal" layoutX="213.0" layoutY="515.0" onDragDetected="#ActionHandled" prefHeight="18.0" prefWidth="53.0" text="Label" />
+            <Label fx:id="Discount" layoutX="213.0" layoutY="543.0" onDragDetected="#ActionHandled" prefHeight="18.0" prefWidth="53.0" text="Label" />
+            <Label fx:id="GST" layoutX="213.0" layoutY="575.0" onDragDetected="#ActionHandled" prefHeight="18.0" prefWidth="75.0" text="Label" />
+            <Button fx:id="Checkout" layoutX="197.0" layoutY="659.0" mnemonicParsing="false" onAction="#ActionHandled" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #BFBFBF;" text="Check Out" textFill="#030101" />
+            <ComboBox fx:id="CashPayment" layoutX="19.0" layoutY="661.0" onAction="#ActionHandled" prefWidth="150.0" promptText="Cash Payment" />
+            <Label layoutX="30.0" layoutY="542.0" prefHeight="18.0" prefWidth="75.0" text="Discount %">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="574.0" prefHeight="18.0" prefWidth="75.0" text="GST ">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="604.0" prefHeight="18.0" prefWidth="75.0" text="Total">
+               <font>
+                  <Font name="System Bold Italic" size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="Total" layoutX="197.0" layoutY="604.0" prefHeight="31.0" prefWidth="107.0" text="20000">
+               <font>
+                  <Font name="System Bold Italic" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ScrollPane fx:id="MenuScroll" layoutX="161.0" layoutY="68.0" prefHeight="634.0" prefWidth="506.0">
+         <content>
+            <GridPane fx:id="grid" prefHeight="186.0" prefWidth="234.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+            </GridPane>
+         </content></ScrollPane>
+   </children>
+</AnchorPane>
