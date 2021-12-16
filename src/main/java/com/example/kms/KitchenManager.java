@@ -1,4 +1,6 @@
-public class KitchenManager extends Employee{
+package com.example.kms;
+
+public class KitchenManager extends Employee {
 
     //Default constructor
     //KitchenManager() {}
