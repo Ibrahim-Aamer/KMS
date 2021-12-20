@@ -24,7 +24,7 @@ import java.time.LocalDate;
 import java.util.EventObject;
 import java.util.ResourceBundle;
 
-public class EmployeeHomePageController {
+public class EmployeeSchedulePageController {
 
     @FXML
     private ResourceBundle resources;
@@ -68,6 +68,15 @@ public class EmployeeHomePageController {
     void homePageButtonPressed(ActionEvent event) {
 
         System.out.println("Hello Home Page");
+
+        //Changing scene
+        try {
+            changeScene("EmployeeHomePage.fxml", event);
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
 
     }
 
@@ -119,14 +128,7 @@ public class EmployeeHomePageController {
     @FXML
     void GoToScheduleButtonPressed(ActionEvent event)
     {
-        //Changing scene
-        try {
-            changeScene("EmployeeSchedulePage.fxml", event);
-        }
-        catch(Exception e)
-        {
-            System.err.println(e.getMessage());
-        }
+
     }
 
     @FXML
@@ -140,6 +142,7 @@ public class EmployeeHomePageController {
         {
             System.err.println(e.getMessage());
         }
+
     }
 
 

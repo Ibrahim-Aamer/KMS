@@ -6,25 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.skin.DatePickerSkin;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import net.synedra.validatorfx.Check;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.EventObject;
 import java.util.ResourceBundle;
 
-public class EmployeeHomePageController {
+public class EmployeeRequestLeavePageController {
 
     @FXML
     private ResourceBundle resources;
@@ -68,6 +60,15 @@ public class EmployeeHomePageController {
     void homePageButtonPressed(ActionEvent event) {
 
         System.out.println("Hello Home Page");
+
+        //Changing scene
+        try {
+            changeScene("EmployeeHomePage.fxml", event);
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
 
     }
 
@@ -132,14 +133,7 @@ public class EmployeeHomePageController {
     @FXML
     void RequestLeaveButtonPressed(ActionEvent event) {
 
-        //Changing scene
-        try {
-            changeScene("EmployeeRequestLeavePage.fxml", event);
-        }
-        catch(Exception e)
-        {
-            System.err.println(e.getMessage());
-        }
+
     }
 
 

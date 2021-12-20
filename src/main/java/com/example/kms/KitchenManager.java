@@ -5,14 +5,17 @@ public class KitchenManager extends Employee {
     //Default constructor
     //KitchenManager() {}
 
-    //Parameterized constructor
-    KitchenManager(int ID, String firstName, String lastName)
-    {
-        idCounter++;//incrementing ID counter
 
-        this.ID = idCounter;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    //Parameterized constructor
+    KitchenManager(String fname, String lname, String username, String password, String empType)
+    {
+        //idCounter++;//incrementing ID counter
+
+        this.firstName = fname;
+        this.lastName = lname;
+        this.username = username;
+        this.password = password;
+        this.employeeType = empType;
     }
 
     //void CreateWorkSchedule(){}
