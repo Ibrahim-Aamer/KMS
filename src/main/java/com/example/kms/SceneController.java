@@ -16,7 +16,7 @@ public class SceneController {
     private Parent root;
 
     public void switchToSchedulePage(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("EmployeeSchedulePage.fxml"));
+        root = FXMLLoader.load(getClass().getResource("KitchenManagerSchedulePage.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -24,7 +24,7 @@ public class SceneController {
     }
 
     public void switchToHomePage(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("EmployeeHomePage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("KitchenManagerHomePage.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

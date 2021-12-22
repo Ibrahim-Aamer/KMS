@@ -17,6 +17,10 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 
 
 public class LoginPageController {
@@ -48,8 +52,9 @@ public class LoginPageController {
     private Stage primaryStage;
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException, ClassNotFoundException {
         //loadingImage.setVisible(false);
+
     }
 
 
@@ -59,17 +64,21 @@ public class LoginPageController {
         System.out.println("login button pressed");
         //loadingImage.setVisible(true);
 
-        try {
-            authenticateLoginFromServer(usernameField.getText(),passwordField.getText());
-        }
-        catch(Exception e)
-        {
-            System.err.println(e.getMessage());
-        }
+        authenticateLoginFromServer(usernameField.getText(),passwordField.getText());
 
         //Changing scene
-        try {
-            //changeScene("EmployeeHomePage.fxml", event);
+        try
+        {
+            Data data = Data.getDataInstance();
+            Message msg = data.getMessage();
+            EmployeeKMS currEmp = data.getMessage().getEmployeeObject();
+
+            if(currEmp.getEmployeeType().equals("Kitchen Manager"))
+            {
+                data.setCurrentEmployeeKms(currEmp);
+
+                changeScene("KitchenManagerHomePage.fxml", event);
+            }
         }
         catch(Exception e)
         {
@@ -81,22 +90,44 @@ public class LoginPageController {
 
         System.out.println(username+" "+password);
 
-        try (Socket socket = new Socket("localhost", 4444)) {
+        try (Socket socket = new Socket("localhost", 4470)) {
 
             System.out.println("welcome client");
             //Socket socket = new Socket("localhost", 4444);
             System.out.println("Client connected");
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
             System.out.println("Ok");
-            Message message = new Message(15, "ibrahim aamer");
-            Employee emp = new Employee("Hadia","Aamer",username,password,"3");
-            message.setEmployee(emp);
+            Message message = new Message("LoginQuery");
+
+            //Writing username and password into message
+            message.setUsername(usernameField.getText());
+            message.setPassword(passwordField.getText());
+
             os.writeObject(message);
             System.out.println("Waiting for server ...");
 
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             Message returnMessage = (Message) is.readObject();
-            System.out.println("return Message is : " + returnMessage.getText());
+            System.out.println("return Message is : " + returnMessage.getQuery());
+
+            //Storing return Message into data
+            Data data = Data.getDataInstance();
+            data.setMessage(returnMessage);
+            //System.out.println(data.getMessage().getEmployeeObject().getEmployeeType());
+
+            //-----------------USELESS------------------------
+            List<EmployeeKMS> empskms = data.getMessage().getEmployeeList();
+
+            for(int i =0 ; i<empskms.size(); i++) {
+
+                System.out.println("Name : "+empskms.get(i).getFirstName()+" "+empskms.get(i).getLastName());
+
+                List<Task> tasks = empskms.get(i).getTasks();
+                for (int c = 0; c < tasks.size(); c++) {
+                    System.out.println(tasks.get(c).getTaskDetails());
+                }
+            }
+            //-----------------------------------------------------
 
             socket.close();
 

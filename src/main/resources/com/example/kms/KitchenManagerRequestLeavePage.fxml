@@ -3,8 +3,8 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="824.0" stylesheets="@CSS/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kms.EmployeeHomePageController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="824.0" stylesheets="@CSS/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kms.KitchenManagerRequestLeavePageController">
    <children>
       <ImageView fitHeight="573.0" fitWidth="824.0" layoutX="1.0" layoutY="60.0" pickOnBounds="true">
          <image>
@@ -51,17 +51,19 @@
             <Button fx:id="signoutButton" layoutX="752.0" layoutY="14.0" minHeight="19.0" minWidth="53.0" mnemonicParsing="false" onAction="#signOutButtonPressed" opacity="0.0" prefHeight="37.0" prefWidth="59.0" style="-fx-background-color: white;" text="Sign Out" wrapText="true" />
          </children>
       </Pane>
-      <ScrollPane fx:id="MenuScroll" layoutX="159.0" layoutY="66.0" onMouseMoved="#HoverHandled" opacity="0.88" prefHeight="570.0" prefWidth="665.0" style="-fx-background-image: C:\Users\Administrator\Desktop\2_edited.jpg;" />
       <Separator layoutX="10.0" layoutY="185.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
       <Separator layoutX="11.0" layoutY="221.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
       <Separator layoutX="11.0" layoutY="145.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
       <Separator layoutX="10.0" layoutY="288.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
       <Separator layoutX="11.0" layoutY="254.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
+      <Button layoutX="29.0" layoutY="224.0" minHeight="16.0" mnemonicParsing="false" opacity="0.0" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: black;" />
       <Label layoutX="42.0" layoutY="150.0" prefHeight="30.0" prefWidth="97.0" text="Home Page">
          <font>
             <Font name="Poor Richard" size="19.0" />
          </font>
       </Label>
+      <Button layoutX="10.0" layoutY="258.0" mnemonicParsing="false" opacity="0.23" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: black;" styleClass="search-button" />
+      <Button fx:id="homePage" layoutX="40.0" layoutY="147.0" mnemonicParsing="false" onAction="#homePageButtonPressed" opacity="0.0" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: black;" text="HomePage Button" />
       <Label layoutX="23.0" layoutY="258.0" prefHeight="30.0" prefWidth="119.0" text="Request Leave">
          <font>
             <Font name="Poor Richard" size="19.0" />
@@ -77,9 +79,37 @@
             <Font name="Poor Richard" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="goToSchedule" layoutX="28.0" layoutY="189.0" minHeight="16.0" mnemonicParsing="false" onAction="#GoToScheduleButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: black;" text="Go to Schedule Button" />
-      <Button fx:id="goToMakeSchedule" layoutX="29.0" layoutY="224.0" minHeight="16.0" mnemonicParsing="false" onAction="#GoToMakeScheduleButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: black;" text="Make Schedule Button" />
-      <Button fx:id="goToRequestLeave" layoutX="29.0" layoutY="258.0" mnemonicParsing="false" onAction="#RequestLeaveButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: black;" text="Request Leave Button" />
-      <Button fx:id="homePage" layoutX="40.0" layoutY="147.0" mnemonicParsing="false" onAction="#homePageButtonPressed" opacity="0.22" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: black;" styleClass="search-button" text="HomePage Button" />
+      <Pane layoutX="345.0" layoutY="206.0" prefHeight="244.0" prefWidth="255.0" style="-fx-background-color: #252525;" styleClass="chosen-fruit-card">
+         <children>
+            <DatePicker fx:id="leaveStartDatePicker" layoutX="34.0" layoutY="73.0" prefHeight="25.0" prefWidth="180.0" />
+            <DatePicker fx:id="LeaveEndDatePicker" layoutX="32.0" layoutY="146.0" prefHeight="25.0" prefWidth="184.0" />
+            <Label layoutX="66.0" layoutY="3.0" prefHeight="30.0" prefWidth="121.0" text="Select Dates" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="81.0" layoutY="53.0" prefHeight="17.0" prefWidth="91.0" text="Leave Start Date" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="123.0" prefHeight="17.0" prefWidth="96.0" text="Leave End Date" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="requestLeaveButton" layoutX="89.0" layoutY="200.0" mnemonicParsing="false" onAction="#onRequestLeaveButton" styleClass="search-button" text="REQUEST" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Separator layoutX="167.0" layoutY="93.0" orientation="VERTICAL" prefHeight="528.0" prefWidth="0.0" style="-fx-background-color: black;" />
+      <Label layoutX="12.0" layoutY="291.0" prefHeight="30.0" prefWidth="137.0" text="Assign Maintenance">
+         <font>
+            <Font name="Poor Richard" size="17.0" />
+         </font>
+      </Label>
+      <Button fx:id="goToMachineMaintenance" layoutX="28.0" layoutY="291.0" mnemonicParsing="false" onAction="#goToMachineMaintenanceButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: black;" text="Assign Maintenance Button" />
+      <Separator layoutX="11.0" layoutY="319.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
+      <Button fx:id="goToMakeScheduleBtn" layoutX="14.0" layoutY="227.0" mnemonicParsing="false" onAction="#goToMakeScheduleBtn" opacity="0.0" prefHeight="25.0" prefWidth="135.0" text="Button" />
+      <Button fx:id="goToScheduleBtn" layoutX="28.0" layoutY="189.0" minHeight="16.0" mnemonicParsing="false" onAction="#OngoToScheduleBtn" opacity="0.0" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: black;" />
    </children>
 </AnchorPane>

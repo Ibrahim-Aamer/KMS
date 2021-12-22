@@ -9,6 +9,7 @@ module com.example.kms {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.persistence;
 
     opens com.example.kms to javafx.fxml;
     exports com.example.kms;
