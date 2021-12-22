@@ -15,8 +15,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
+import java.net.Socket;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class KitchenManagerSchedulePageController implements Initializable {
@@ -62,14 +71,32 @@ public class KitchenManagerSchedulePageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
-    {
+    { //Getting data static instance
+        Data data = Data.getDataInstance();
+
+
+        //-----First Getting fresh message from server--------
+        try {
+            this.RefreshLists(data.getCurrentEmployeeKms());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        //-----------------------------------------------------
+
+        Message msg = data.getMessage();
+
+
         //Initializing date task picker
         this.InitializeTaskDatePicker();
 
-        //str
 
         //--------CODE TO INITIALIZE LIST VIEW OF EMPLOYEES-------------------------------
-        //tasksList.getItems().addAll(strEmployeesList);
+
+        ArrayList<String > tasksStr = new ArrayList<String>();
+
+        tasksList.getItems().addAll(tasksStr);
         tasksList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
 
             @Override
@@ -77,11 +104,73 @@ public class KitchenManagerSchedulePageController implements Initializable {
 
                 selectedTask=tasksList.getSelectionModel().getSelectedIndex();//getting current selection
 
+                if(selectedTask < staticTaskList.size()) {
+                    taskDateLabel.setText(staticTaskList.get(selectedTask).getTaskDate());
+                    taskDetailsLabel.setText(staticTaskList.get(selectedTask).getTaskDetails());
+                    taskNameLabel.setText(staticTaskList.get(selectedTask).getTaskName());
+                }
+                System.out.println(staticTaskList.size());
                 System.out.println(selectedTask);
             }
         });
         //-------------------------------------------------------------------------------
 
+
+
+    }
+
+
+    @FXML
+    void taskDatePickerPressed(ActionEvent event) {
+
+
+        String pattern = "dd/MM/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        Date date =Date.from(taskDatePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
+        String dateStr = simpleDateFormat.format(date);//formatting input date
+        System.out.println("Date str : "+dateStr);
+
+        ArrayList<String > tasksStr = this.getTasksListStr(dateStr);
+
+        for(int c=0 ; c<tasksStr.size();c++)
+        {
+            System.out.println("tttt : " + tasksStr.get(c));
+        }
+
+        tasksList.getItems().clear();
+        tasksList.getItems().addAll(tasksStr);
+
+
+
+    }
+
+    static List<Task> staticTaskList = new ArrayList<Task>();//static list of tasks for description
+
+    //function to return task array list string
+    public ArrayList<String> getTasksListStr(String strDate)
+    {
+        Data data = Data.getDataInstance();
+        EmployeeKMS currEmp = data.getMessage().getEmployeeObject();//getting current employee instance
+
+
+        ArrayList<String> strTaskList = new ArrayList<String>();//new array list
+
+        staticTaskList = new ArrayList<Task>();
+
+        List<Task> tasksList = currEmp.getTasks();//getting tasks list
+
+        for(int c=0 ; c<tasksList.size() ; c++)
+        {
+            System.out.println("Dates : " +strDate+" "+tasksList.get(c).getTaskDate());
+            if(strDate.equals(tasksList.get(c).getTaskDate()))
+            {
+                staticTaskList.add(tasksList.get(c));
+                strTaskList.add(tasksList.get(c).getTaskName());//adding same date task to list
+            }
+        }
+
+        return strTaskList;
     }
 
     @FXML
@@ -188,6 +277,58 @@ public class KitchenManagerSchedulePageController implements Initializable {
             }
         });
         //-----------------------------------------------------------------------------------
+    }
+
+    void RefreshLists(EmployeeKMS currEmp) throws IOException, ClassNotFoundException {
+
+
+        try (Socket socket = new Socket("localhost", 4470)) {
+
+            System.out.println("welcome client");
+            //Socket socket = new Socket("localhost", 4444);
+            System.out.println("Client connected");
+            ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
+            System.out.println("Ok");
+            Message message = new Message("LoginQuery");
+
+            //Writing username and password into message
+            message.setUsername(currEmp.username);
+            message.setPassword(currEmp.password);
+
+            os.writeObject(message);
+            System.out.println("Waiting for server ...");
+
+            ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
+            Message returnMessage = (Message) is.readObject();
+            System.out.println("return Message is : " + returnMessage.getQuery());
+
+            //Storing return Message into data
+            Data data = Data.getDataInstance();
+            data.setMessage(returnMessage);
+            //System.out.println(data.getMessage().getEmployeeObject().getEmployeeType());
+
+            //-----------------USELESS------------------------
+            List<EmployeeKMS> empskms = data.getMessage().getEmployeeList();
+
+            for(int i =0 ; i<empskms.size(); i++) {
+
+                System.out.println("Name : "+empskms.get(i).getFirstName()+" "+empskms.get(i).getLastName());
+
+                List<Task> tasks = empskms.get(i).getTasks();
+                for (int c = 0; c < tasks.size(); c++) {
+                    System.out.println(tasks.get(c).getTaskDetails());
+                }
+            }
+            //-----------------------------------------------------
+
+            socket.close();
+
+            // closing the scanner object
+            //sc.close();
+        }
+        catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }

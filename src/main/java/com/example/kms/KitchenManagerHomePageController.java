@@ -47,7 +47,7 @@ public class KitchenManagerHomePageController {
     void GoToMakeScheduleButtonPressed(ActionEvent event) {
 
         try {
-            changeScene("KitchenManagerMakeSchedule.fxml", event);
+            changeScene("KitchenManagerMakeSchedulePage.fxml", event);
         }
         catch(Exception e)
         {

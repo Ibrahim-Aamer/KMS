@@ -83,7 +83,7 @@
       <Button fx:id="homePage" layoutX="40.0" layoutY="147.0" mnemonicParsing="false" onAction="#homePageButtonPressed" opacity="0.0" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: black;" styleClass="search-button" text="HomePage Button" />
       <Pane layoutX="182.0" layoutY="129.0" prefHeight="437.0" prefWidth="620.0" style="-fx-background-color: #252525;" styleClass="search-button">
          <children>
-            <DatePicker fx:id="taskDatePicker" layoutX="71.0" layoutY="51.0" prefHeight="25.0" prefWidth="192.0" />
+            <DatePicker fx:id="taskDatePicker" layoutX="71.0" layoutY="51.0" onAction="#taskDatePickerPressed" prefHeight="25.0" prefWidth="192.0" />
             <Label layoutX="121.0" layoutY="18.0" prefHeight="25.0" prefWidth="107.0" text="Choose Date" textFill="WHITE">
                <font>
                   <Font size="16.0" />
@@ -101,9 +101,9 @@
                   <Label layoutX="10.0" layoutY="84.0" prefHeight="18.0" prefWidth="51.0" text="Date    " textFill="WHITE" />
                   <Separator layoutX="54.0" layoutY="62.0" orientation="VERTICAL" prefHeight="219.0" prefWidth="5.0" />
                   <Label layoutX="9.0" layoutY="105.0" prefHeight="18.0" prefWidth="44.0" text="Details" textFill="WHITE" />
-                  <Label fx:id="taskNameLabel" layoutX="63.0" layoutY="65.0" prefHeight="18.0" prefWidth="124.0" text="Label" textFill="WHITE" />
-                  <Label fx:id="taskDateLabel" layoutX="63.0" layoutY="84.0" prefHeight="18.0" prefWidth="124.0" text="Label" textFill="WHITE" />
-                  <Label fx:id="taskDetailsLabel" alignment="TOP_LEFT" layoutX="63.0" layoutY="105.0" prefHeight="178.0" prefWidth="124.0" text="Label" textFill="WHITE" />
+                  <Label fx:id="taskNameLabel" layoutX="63.0" layoutY="65.0" prefHeight="18.0" prefWidth="124.0" textFill="WHITE" />
+                  <Label fx:id="taskDateLabel" layoutX="63.0" layoutY="84.0" prefHeight="18.0" prefWidth="124.0" textFill="WHITE" />
+                  <Label fx:id="taskDetailsLabel" alignment="TOP_LEFT" layoutX="63.0" layoutY="105.0" prefHeight="178.0" prefWidth="124.0" textFill="WHITE" wrapText="true" />
                </children>
             </Pane>
          </children>

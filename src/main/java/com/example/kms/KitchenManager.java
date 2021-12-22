@@ -26,7 +26,7 @@ public class KitchenManager extends EmployeeKMS {
         this.employeeType = empType;
     }
 
-    public void AssignTaskToEmployee(EmployeeKMS assignedTo, Task task)
+    public void AssignSchedule(EmployeeKMS assignedTo, Task task)
     {
         try (Socket socket = new Socket("localhost", 4470)) {
 
@@ -46,6 +46,9 @@ public class KitchenManager extends EmployeeKMS {
 
             os.writeObject(message);
             System.out.println("Waiting for server ...");
+
+            System.out.println("EMP : " + assignedTo.getFirstName());
+            System.out.println("Task date: "+task.getTaskDate());
 
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             Message returnMessage = (Message) is.readObject();

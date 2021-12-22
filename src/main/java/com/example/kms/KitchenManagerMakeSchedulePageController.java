@@ -2,8 +2,6 @@ package com.example.kms;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,17 +13,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.skin.DatePickerSkin;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import net.synedra.validatorfx.Check;
 
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.EventObject;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -93,12 +91,18 @@ public class KitchenManagerMakeSchedulePageController implements Initializable {
         List<EmployeeKMS> empskms = data.getMessage().getEmployeeList();
         List<Task> tasks = data.getMessage().getTasksList();
 
+        String pattern = "dd/MM/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        Date date =Date.from(taskDatePicker.getValue().atStartOfDay(defaultZoneId).toInstant());
+        String dateStr = simpleDateFormat.format(date);//formatting input date
+
         //Adding selected data into task
-        tasks.get(selectedTask).setTaskDate(taskDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        tasks.get(selectedTask).setTaskDate(dateStr);
 
 
         //Calling this function which assigns
-        kitchenManager.AssignTaskToEmployee(empskms.get(selectedEmployee),tasks.get(selectedTask));
+        kitchenManager.AssignSchedule(empskms.get(selectedEmployee),tasks.get(selectedTask));
 
 
     }
