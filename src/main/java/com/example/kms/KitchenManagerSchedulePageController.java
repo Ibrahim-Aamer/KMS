@@ -74,6 +74,14 @@ public class KitchenManagerSchedulePageController implements Initializable {
     { //Getting data static instance
         Data data = Data.getDataInstance();
 
+        try {
+            this.RefreshLists(data.getMessage().getEmployeeObject());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
         //-----First Getting fresh message from server--------
         try {

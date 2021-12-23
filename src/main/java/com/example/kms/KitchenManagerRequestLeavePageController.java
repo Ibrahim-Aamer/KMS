@@ -209,6 +209,15 @@ public class KitchenManagerRequestLeavePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        Data data = Data.getDataInstance();
+        try {
+            this.RefreshLists(data.getMessage().getEmployeeObject());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         //--------CODE TO INITIALIZE LIST VIEW OF EMPLOYEES-------------------------------
 
         ArrayList<String > listStr = this.getLeaveRequestsStrList();

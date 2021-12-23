@@ -97,6 +97,18 @@ public class LoginPageController {
 
                 changeScene("JuniorChefHomePage.fxml", event);
             }
+            else if(currEmp.getEmployeeType().equals("System"))
+            {
+                data.setCurrentEmployeeKms(currEmp);
+
+                changeScene("JuniorChefHomePage.fxml", event);
+            }
+            else if(currEmp.getEmployeeType().equals("Waiter"))
+            {
+                data.setCurrentEmployeeKms(currEmp);
+
+                changeScene("JuniorChefHomePage.fxml", event);
+            }
         }
         catch(Exception e)
         {
