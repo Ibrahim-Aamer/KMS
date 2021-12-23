@@ -1,22 +1,47 @@
 package com.example.kms;
 
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.net.Socket;
-import java.util.List;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 
-public class KitchenManager extends EmployeeKMS {
+public class SousChef extends EmployeeKMS {
+
+    static SousChef chef = null;
+    ArrayList<Ingredients> ingredients;
+
+    public void setIngredients(ArrayList<Ingredients> ing) { chef.ingredients = ing;
+    }
+
+    public ArrayList<Ingredients> getIngredients() {
+        return ingredients;
+    }
+
+    SousChef() {
+        chef = null;
 
 
+    }
 
-    //Default constructor
-    //KitchenManager() {}
-
-
-    //Parameterized constructor
-    KitchenManager(String fname, String lname, String username, String password, String empType)
+    public int deductIngredientQuantity(int q,int Index)
     {
+        int quan=ingredients.get(Index).getQuantity();
+        int remians=quan-q;
+        return remians;
+    }
+    public static SousChef getInstance() {
+        if (chef == null) {
+            chef = new SousChef();
+        }
+        return chef;
+
+    }
+
+    SousChef(String fname, String lname, String username, String password, String empType) {
         //idCounter++;//incrementing ID counter
 
         this.firstName = fname;
@@ -26,52 +51,19 @@ public class KitchenManager extends EmployeeKMS {
         this.employeeType = empType;
     }
 
-    public void AssignSchedule(EmployeeKMS assignedTo, Task task)
-    {
-        try (Socket socket = new Socket("localhost", 4470)) {
+    public void InitializeStaticInstance(String fname, String lname, String username, String password, String empType, ArrayList<Ingredients> ingList) {
+        //idCounter++;//incrementing ID counter
 
-            System.out.println("welcome client");
-            //Socket socket = new Socket("localhost", 4444);
-            System.out.println("Client connected");
-            ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
-            System.out.println("Ok");
-            Message message = new Message("KitchenManger-AssignTask");
-
-            message.setEmpAssignedto(assignedTo);
-            message.setAssignedTask(task);
-
-            //Writing username and password into message
-            //message.setUsername(usernameField.getText());
-            //message.setPassword(passwordField.getText());
-
-            os.writeObject(message);
-            System.out.println("Waiting for server ...");
-
-            System.out.println("EMP : " + assignedTo.getFirstName());
-            System.out.println("Task date: "+task.getTaskDate());
-
-            ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
-            Message returnMessage = (Message) is.readObject();
-            System.out.println("Return Message is : " + returnMessage.getQuery());
-
-            //Storing return Message into data
-            //Data data = Data.getDataInstance();
-            //data.setMessage(returnMessage);
-            //System.out.println(data.getMessage().getEmployeeObject().getEmployeeType());
-
-
-            socket.close();
-
-            // closing the scanner object
-            //sc.close();
-        }
-        catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        chef.firstName = fname;
+        chef.lastName = lname;
+        chef.username = username;
+        chef.password = password;
+        chef.employeeType = empType;
+        chef.ingredients = ingList;
     }
 
-    //Function to add Machine related task into KMS
-    public void MachineryMaintenance(Task newTask)
+    //implements the request to the server where , the Ingredients Array is returned Back
+    public void SendMealPrep(Task obj)
     {
         try (Socket socket = new Socket("localhost", 4470)) {
 
@@ -80,10 +72,13 @@ public class KitchenManager extends EmployeeKMS {
             System.out.println("Client connected");
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
             System.out.println("Ok");
-            Message message = new Message("KitchenManger-AddTask");
+            Message message = new Message("Sous Chef-AddMealPrep");
 
             //Writing new Task into message
-            message.setNewTask(newTask);
+            message.setNewTask(obj);
+
+            message.setIngredientsList(this.ingredients);//writing updated ingredients list into msg
+
 
             //Writing username and password into message
             //message.setUsername(usernameField.getText());
@@ -112,10 +107,15 @@ public class KitchenManager extends EmployeeKMS {
         }
 
 
+
+
+
     }
 
-    //Function to add Machine related task into KMS
-    public void AcknowledgeLeaveRequest(LeaveRequest leaveRequest)
+
+
+
+    public void RequestForLeave(String startDate, String endDate)
     {
         try (Socket socket = new Socket("localhost", 4470)) {
 
@@ -124,17 +124,18 @@ public class KitchenManager extends EmployeeKMS {
             System.out.println("Client connected");
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
             System.out.println("Ok");
-            Message message = new Message("KitchenManger-Acknowledge Leave Request");
+            Message message = new Message("Leave-Request");
 
-            //Writing new Task into message
-            message.setAcknowledgeLeaveRequest(leaveRequest);
+            LeaveRequest newLeaveRequest = new LeaveRequest(startDate,endDate,this.id,this.firstName+" "+this.lastName,this.employeeType);
+            //message
+            message.setNewLeaveRequest(newLeaveRequest);//writing new leave request in message
 
-            //Writing username and password into message
-            //message.setUsername(usernameField.getText());
-            //message.setPassword(passwordField.getText());
 
             os.writeObject(message);
             System.out.println("Waiting for server ...");
+
+            //System.out.println("EMP : " + assignedTo.getFirstName());
+            //System.out.println("Task date: "+task.getTaskDate());
 
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             Message returnMessage = (Message) is.readObject();
@@ -155,9 +156,5 @@ public class KitchenManager extends EmployeeKMS {
             e.printStackTrace();
         }
 
-
     }
-
-
-
 }

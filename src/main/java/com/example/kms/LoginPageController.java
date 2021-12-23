@@ -79,6 +79,12 @@ public class LoginPageController {
 
                 changeScene("KitchenManagerHomePage.fxml", event);
             }
+            else if(currEmp.getEmployeeType().equals("Sous Chef"))
+            {
+                data.setCurrentEmployeeKms(currEmp);
+
+                changeScene("SousChefHomePage.fxml", event);
+            }
         }
         catch(Exception e)
         {

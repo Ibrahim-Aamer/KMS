@@ -400,19 +400,6 @@ public class KitchenManagerMakeSchedulePageController implements Initializable {
             data.setMessage(returnMessage);
             //System.out.println(data.getMessage().getEmployeeObject().getEmployeeType());
 
-            //-----------------USELESS------------------------
-            List<EmployeeKMS> empskms = data.getMessage().getEmployeeList();
-
-            for(int i =0 ; i<empskms.size(); i++) {
-
-                System.out.println("Name : "+empskms.get(i).getFirstName()+" "+empskms.get(i).getLastName());
-
-                List<Task> tasks = empskms.get(i).getTasks();
-                for (int c = 0; c < tasks.size(); c++) {
-                    System.out.println(tasks.get(c).getTaskDetails());
-                }
-            }
-            //-----------------------------------------------------
 
             socket.close();
 

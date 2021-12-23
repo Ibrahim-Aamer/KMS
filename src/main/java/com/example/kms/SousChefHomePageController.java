@@ -1,8 +1,6 @@
 package com.example.kms;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,28 +8,30 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class KitchenManagerHomePageController {
+import java.io.IOException;
+
+public class SousChefHomePageController {
 
     @FXML
-    private ResourceBundle resources;
+    private ScrollPane MenuScroll;
 
     @FXML
-    private URL location;
-
-    @FXML
-    private Button goToMachineMaintenance;
-
-    @FXML
-    private Button goToMakeSchedule;
+    private Label PromptMessage;
 
     @FXML
     private Button goToRequestLeave;
 
     @FXML
-    private Button goToScheduleButton;
+    private Button goToMealPrep;
+
+    @FXML
+    private Button goToSchedule;
 
     @FXML
     private Button homePage;
@@ -44,65 +44,45 @@ public class KitchenManagerHomePageController {
     private Stage primaryStage;
 
     @FXML
-    void GoToMakeScheduleButtonPressed(ActionEvent event) {
-
-        try {
-            changeScene("KitchenManagerMakeSchedulePage.fxml", event);
-        }
-        catch(Exception e)
-        {
-            System.err.println(e.getMessage());
-        }
-
-    }
-
-    @FXML
-    void GoToScheduleButtonPressed(ActionEvent event) {
-
-        try {
-            changeScene("KitchenManagerSchedulePage.fxml", event);
-        }
-        catch(Exception e)
-        {
-            System.err.println(e.getMessage());
-        }
-
-    }
-
-    @FXML
-    void goToMachineMaintenanceButtonPressed(ActionEvent event) {
-
-        try {
-            changeScene("KitchenManagerMachineMaintenance.fxml", event);
-        }
-        catch(Exception e)
-        {
-            System.err.println(e.getMessage());
-        }
-
-    }
-
-    @FXML
-    void goToRequestLeaveButtonPressed(ActionEvent event) {
-        try {
-            changeScene("KitchenManagerRequestLeavePage.fxml", event);
-        }
-        catch(Exception e)
-        {
-            System.err.println(e.getMessage());
-        }
-
-    }
-
-    @FXML
     void homePageButtonPressed(ActionEvent event) {
 
-
     }
 
     @FXML
-    void signOutButtonPressed(ActionEvent event) {
+    void HoverHandled(MouseEvent event) {
 
+    }
+    @FXML
+    void GoToScheduleButtonPressed(ActionEvent event) throws IOException {
+
+        try {
+            changeScene("SousChefSchedule.fxml", event);
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+    }
+
+
+
+    @FXML
+    void RequestLeaveButtonPressed(ActionEvent event) throws IOException {
+
+        try {
+            changeScene("SousChefRequestLeave.fxml", event);
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+    }
+
+
+
+    @FXML
+    void signOutButtonPressed(ActionEvent event)
+    {
         try {
             changeScene("LoginPage.fxml", event);
         }
@@ -110,12 +90,17 @@ public class KitchenManagerHomePageController {
         {
             System.err.println(e.getMessage());
         }
-
     }
 
     @FXML
-    void initialize() {
-
+    void GoToMealPrepPressed(ActionEvent event) throws IOException {
+        try {
+            changeScene("SousChefMealPrep.fxml", event);
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 
     //Generic function to change scene
@@ -130,5 +115,6 @@ public class KitchenManagerHomePageController {
         //-----------------------------------------------------
 
     }
+
 
 }
