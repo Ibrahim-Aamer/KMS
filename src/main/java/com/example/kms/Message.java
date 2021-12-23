@@ -12,10 +12,15 @@ public class Message implements Serializable{
 
     private EmployeeKMS empKms;
 
-
     private ArrayList<LeaveRequest> AllLeaveRequests;
 
     private LeaveRequest newLeaveRequest;
+
+    private Product newProduct;
+
+    private ArrayList<Product> ProductsList;
+
+    private EmployeeKMS newMember;
 
     //private Employee employeeObject;
 
@@ -23,6 +28,8 @@ public class Message implements Serializable{
     //Variables to be used by kitchen Manager
     private EmployeeKMS empAssignedto;
     private Task assignedTask;
+
+    private Ingredients newIngredient;
 
     private ArrayList<EmployeeKMS> EmployeeKMSList = new ArrayList<EmployeeKMS>();
 
@@ -156,5 +163,37 @@ public class Message implements Serializable{
 
     public void setEmployeeList(ArrayList<EmployeeKMS> employeeList) {
         EmployeeKMSList = employeeList;
+    }
+
+    public Product getNewProduct() {
+        return newProduct;
+    }
+
+    public void setNewProduct(Product newProduct) {
+        this.newProduct = newProduct;
+    }
+
+    public ArrayList<Product> getProductsList() {
+        return ProductsList;
+    }
+
+    public void setProductsList(ArrayList<Product> productsList) {
+        ProductsList = productsList;
+    }
+
+    public EmployeeKMS getNewMember() {
+        return newMember;
+    }
+
+    public void setNewMember(EmployeeKMS newMember) {
+        this.newMember = newMember;
+    }
+
+    public Ingredients getNewIngredient() {
+        return newIngredient;
+    }
+
+    public void setNewIngredient(Ingredients newIngredient) {
+        this.newIngredient = newIngredient;
     }
 }

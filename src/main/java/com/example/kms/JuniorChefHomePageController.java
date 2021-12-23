@@ -11,15 +11,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class KitchenManagerHomePageController {
+public class JuniorChefHomePageController {
 
-    public Label firstNameLabel;
-    public Label secondNameLabel;
-    public Label userNameLabel;
-    public Label empTypeLabel;
     @FXML
     private ResourceBundle resources;
 
@@ -27,16 +24,28 @@ public class KitchenManagerHomePageController {
     private URL location;
 
     @FXML
-    private Button goToMachineMaintenance;
+    private Label EmployeeName;
 
     @FXML
-    private Button goToMakeSchedule;
+    private Button ManageInventory;
 
     @FXML
-    private Button goToRequestLeave;
+    private ScrollPane MenuScroll;
 
     @FXML
-    private Button goToScheduleButton;
+    private Button PlaceOrder;
+
+    @FXML
+    private Button RequestLeave;
+
+    @FXML
+    private Button Schedule;
+
+    @FXML
+    private Label empTypeLabel;
+
+    @FXML
+    private Label firstNameLabel;
 
     @FXML
     private Button homePage;
@@ -45,69 +54,72 @@ public class KitchenManagerHomePageController {
     private AnchorPane rootPane;
 
     @FXML
+    private Label secondNameLabel;
+
+    @FXML
     private Button signoutButton;
+
+    @FXML
+    private Label userNameLabel;
     private Stage primaryStage;
 
     @FXML
-    void GoToMakeScheduleButtonPressed(ActionEvent event) {
-
+    void ManageInventoryButtonPressed(ActionEvent event)
+    {
         try {
-            changeScene("KitchenManagerMakeSchedulePage.fxml", event);
+            changeScene("JuniorChefManageInventory.fxml", event);
         }
         catch(Exception e)
         {
             System.err.println(e.getMessage());
         }
-
     }
 
     @FXML
-    void GoToScheduleButtonPressed(ActionEvent event) {
-
+    void PlaceOrderButtonPressed(ActionEvent event)
+    {
         try {
-            changeScene("KitchenManagerSchedulePage.fxml", event);
+            changeScene("JuniorChefPlaceOrder.fxml", event);
         }
         catch(Exception e)
         {
             System.err.println(e.getMessage());
         }
-
     }
 
     @FXML
-    void goToMachineMaintenanceButtonPressed(ActionEvent event) {
-
+    void RequestLeaveButtonPressed(ActionEvent event)
+    {
         try {
-            changeScene("KitchenManagerMachineMaintenance.fxml", event);
+            changeScene("JuniorChefRequestLeave.fxml", event);
         }
         catch(Exception e)
         {
             System.err.println(e.getMessage());
         }
-
     }
 
     @FXML
-    void goToRequestLeaveButtonPressed(ActionEvent event) {
+    void goToSchedule(ActionEvent event)
+    {
         try {
-            changeScene("KitchenManagerRequestLeavePage.fxml", event);
+            changeScene("JuniorChefSchedule.fxml", event);
         }
         catch(Exception e)
         {
             System.err.println(e.getMessage());
         }
+    }
+
+    @FXML
+    void homePageButtonPressed(ActionEvent event)
+    {
 
     }
 
     @FXML
-    void homePageButtonPressed(ActionEvent event) {
-
-
-    }
-
-    @FXML
-    void signOutButtonPressed(ActionEvent event) {
-
+    void signOutButtonPressed(ActionEvent event)
+    {
         try {
             changeScene("LoginPage.fxml", event);
         }
@@ -115,12 +127,11 @@ public class KitchenManagerHomePageController {
         {
             System.err.println(e.getMessage());
         }
-
     }
 
     @FXML
-    void initialize()
-    {
+    void initialize() {
+
         Data data = Data.getDataInstance();
 
         EmployeeKMS emp = data.getMessage().getEmployeeObject();

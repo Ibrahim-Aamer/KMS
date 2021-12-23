@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -12,14 +11,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="824.0" stylesheets="@CSS/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kms.KitchenManagerHomePageController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="824.0" stylesheets="@CSS/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kms.JuniorChefHomePageController">
    <children>
       <ImageView fitHeight="573.0" fitWidth="824.0" layoutX="1.0" layoutY="60.0" pickOnBounds="true">
          <image>
             <Image url="@Images/kitchenBackground.jpg" />
          </image>
       </ImageView>
-      <Canvas height="635.0" layoutX="-9.0" layoutY="-2.0" width="906.0" />
       <Pane layoutX="-2.0" prefHeight="66.0" prefWidth="826.0" style="-fx-background-color: #252525;">
          <children>
             <ImageView fitHeight="59.0" fitWidth="59.0" layoutX="683.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
@@ -30,12 +28,12 @@
                   <Image url="@Images/Sample_User_Icon.png" />
                </image>
             </ImageView>
-            <Label layoutX="528.0" layoutY="16.0" prefHeight="36.0" prefWidth="143.0" text="Employee Label" textFill="WHITE">
+            <Label fx:id="EmployeeName" layoutX="528.0" layoutY="16.0" prefHeight="36.0" prefWidth="143.0" text="Employee Label" textFill="WHITE">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <ImageView fitHeight="100.0" fitWidth="79.0" layoutX="42.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="79.0" fitWidth="77.0" layoutX="42.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/chefgif.gif" />
                </image>
@@ -51,43 +49,42 @@
          </children>
       </Pane>
       <Separator layoutX="10.0" layoutY="185.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
-      <Separator layoutX="11.0" layoutY="221.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
       <Separator layoutX="11.0" layoutY="145.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
-      <Separator layoutX="10.0" layoutY="288.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
-      <Separator layoutX="11.0" layoutY="254.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
-      <Label layoutX="42.0" layoutY="150.0" prefHeight="30.0" prefWidth="97.0" text="Home Page">
+      <Label alignment="CENTER" layoutX="12.0" layoutY="150.0" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: #BFBFBF;" text="Home Page">
          <font>
             <Font name="Poor Richard" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="homePage" layoutX="40.0" layoutY="147.0" mnemonicParsing="false" onAction="#homePageButtonPressed" opacity="0.22" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: black;" styleClass="search-button" text="HomePage Button" />
-      <Label layoutX="23.0" layoutY="258.0" prefHeight="30.0" prefWidth="119.0" text="Request Leave">
+      <Button fx:id="homePage" layoutX="11.0" layoutY="147.0" mnemonicParsing="false" onAction="#homePageButtonPressed" opacity="0.0" prefHeight="36.0" prefWidth="143.0" style="-fx-background-color: black;" styleClass="search-button" text="HomePage Button" />
+      <Separator layoutX="11.0" layoutY="220.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
+      <Label alignment="CENTER" layoutX="11.0" layoutY="184.0" prefHeight="37.0" prefWidth="143.0" text="Schedule">
          <font>
             <Font name="Poor Richard" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="22.0" layoutY="224.0" prefHeight="30.0" prefWidth="119.0" text="Make Schedule">
+      <Button fx:id="Schedule" layoutX="10.0" layoutY="188.0" mnemonicParsing="false" onAction="#goToSchedule" opacity="0.0" prefHeight="30.0" prefWidth="143.0" text="Schedule" />
+      <Separator layoutX="11.0" layoutY="259.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
+      <Label alignment="CENTER" layoutX="11.0" layoutY="223.0" prefHeight="38.0" prefWidth="143.0" text="Request Leave">
          <font>
             <Font name="Poor Richard" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="49.0" layoutY="189.0" prefHeight="30.0" prefWidth="67.0" text="Schedule">
+      <Button fx:id="RequestLeave" layoutX="11.0" layoutY="237.0" mnemonicParsing="false" onAction="#RequestLeaveButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="143.0" text="Request Leave" />
+      <Separator layoutX="11.0" layoutY="303.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
+      <Label alignment="CENTER" layoutX="11.0" layoutY="267.0" prefHeight="37.0" prefWidth="143.0" text="Place Order">
          <font>
             <Font name="Poor Richard" size="19.0" />
          </font>
       </Label>
-      <Separator layoutX="167.0" layoutY="93.0" orientation="VERTICAL" prefHeight="528.0" prefWidth="0.0" style="-fx-background-color: black;" />
-      <Label layoutX="12.0" layoutY="291.0" prefHeight="30.0" prefWidth="137.0" text="Assign Maintenance">
+      <Button fx:id="PlaceOrder" layoutX="11.0" layoutY="262.0" mnemonicParsing="false" onAction="#PlaceOrderButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="143.0" text="Place Order" />
+      <Separator layoutX="11.0" layoutY="347.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
+      <Label alignment="CENTER" layoutX="11.0" layoutY="311.0" prefHeight="37.0" prefWidth="143.0" text="Manage Inventory">
          <font>
-            <Font name="Poor Richard" size="17.0" />
+            <Font name="Poor Richard" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="goToMachineMaintenance" layoutX="28.0" layoutY="291.0" mnemonicParsing="false" onAction="#goToMachineMaintenanceButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: black;" text="Assign Maintenance Button" />
-      <Separator layoutX="11.0" layoutY="319.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
-      <Button fx:id="goToRequestLeave" layoutX="29.0" layoutY="258.0" mnemonicParsing="false" onAction="#goToRequestLeaveButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: black;" />
-      <Button fx:id="goToScheduleButton" layoutX="28.0" layoutY="189.0" minHeight="16.0" mnemonicParsing="false" onAction="#GoToScheduleButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: black;" />
-      <Button fx:id="goToMakeSchedule" layoutX="29.0" layoutY="224.0" minHeight="16.0" mnemonicParsing="false" onAction="#GoToMakeScheduleButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: black;" />
-      <Pane layoutX="342.0" layoutY="206.0" prefHeight="198.0" prefWidth="274.0" style="-fx-background-color: Brown;" styleClass="chosen-fruit-card">
+      <Button fx:id="ManageInventory" layoutX="11.0" layoutY="306.0" mnemonicParsing="false" onAction="#ManageInventoryButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="143.0" text="Manage Inventory" />
+      <Pane layoutX="332.0" layoutY="216.0" prefHeight="198.0" prefWidth="274.0" style="-fx-background-color: Brown;" styleClass="chosen-fruit-card">
          <children>
             <Label layoutX="66.0" layoutY="16.0" text="Employee Details" textFill="WHITE" underline="true">
                <font>
@@ -121,5 +118,6 @@
             <Label fx:id="empTypeLabel" alignment="CENTER" layoutX="127.0" layoutY="139.0" prefHeight="22.0" prefWidth="140.0" textFill="WHITE" />
          </children>
       </Pane>
+      <Separator layoutX="165.0" layoutY="80.0" orientation="VERTICAL" prefHeight="537.0" prefWidth="4.0" style="-fx-background-color: black;" />
    </children>
 </AnchorPane>

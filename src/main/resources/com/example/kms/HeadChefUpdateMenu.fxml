@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="635.0" prefWidth="824.0" stylesheets="@CSS/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kms.HeadChefUpdateMenuController">
+   <children>
+      <ImageView fitHeight="573.0" fitWidth="824.0" layoutX="1.0" layoutY="60.0" pickOnBounds="true">
+         <image>
+            <Image url="@Images/kitchenBackground.jpg" />
+         </image>
+      </ImageView>
+      <Canvas height="635.0" layoutX="-9.0" layoutY="14.0" width="906.0" />
+      <Pane layoutX="-2.0" prefHeight="66.0" prefWidth="826.0" style="-fx-background-color: #252525;">
+         <children>
+            <ImageView fitHeight="59.0" fitWidth="59.0" layoutX="683.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <ColorAdjust brightness="1.0" contrast="0.03" saturation="1.0" />
+               </effect>
+               <image>
+                  <Image url="@Images/Sample_User_Icon.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="EmployeeName" layoutX="528.0" layoutY="16.0" prefHeight="36.0" prefWidth="143.0" text="Employee Label" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="42.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/chefgif.gif" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="44.0" layoutX="759.0" layoutY="14.0" opacity="0.7" pickOnBounds="true">
+               <image>
+                  <Image url="@Images/logoutButton.jpg" />
+               </image></ImageView>
+            <Button fx:id="signoutButton" layoutX="752.0" layoutY="14.0" minHeight="19.0" minWidth="53.0" mnemonicParsing="false" onAction="#signOutButtonPressed" opacity="0.0" prefHeight="37.0" prefWidth="59.0" style="-fx-background-color: white;" text="Sign Out" wrapText="true" />
+         </children>
+      </Pane>
+      <ScrollPane fx:id="MenuScroll" layoutX="164.0" layoutY="66.0" onMouseMoved="#HoverHandled" opacity="0.88" prefHeight="570.0" prefWidth="665.0" style="-fx-background-image: C:\Users\Administrator\Desktop\2_edited.jpg;">
+         <content>
+            <Pane prefHeight="559.0" prefWidth="659.0">
+               <children>
+                  <TextField fx:id="ProductName" layoutX="474.0" layoutY="48.0" prefHeight="25.0" prefWidth="166.0" />
+                  <Pane layoutX="2.0" layoutY="95.0" prefHeight="203.0" prefWidth="654.0" style="-fx-background-color: #252525;">
+                     <children>
+                        <TextField fx:id="Price" layoutX="483.0" layoutY="114.0" />
+                        <TextField fx:id="Imagepath" layoutX="483.0" layoutY="55.0" />
+                        <Label alignment="CENTER" layoutX="286.0" layoutY="53.0" prefHeight="30.0" prefWidth="178.0" text="Image Name (with extension): " textFill="#ffeeee">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="309.0" layoutY="111.0" prefHeight="30.0" prefWidth="155.0" text="Price:" textFill="#ffeeee">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Label alignment="CENTER" layoutX="311.0" layoutY="46.0" prefHeight="30.0" prefWidth="155.0" text="Product Name:" textFill="#100f0f">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="275.0" layoutY="337.0" prefHeight="30.0" prefWidth="155.0" text="Description" textFill="#100f0f">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="SubmitButton" layoutX="504.0" layoutY="498.0" mnemonicParsing="false" onAction="#UpdateMenu" prefHeight="30.0" prefWidth="143.0" style="-fx-border: 5; -fx-border-color: #ff2f1f;" text="Submit Menu Product" />
+                  <TextArea fx:id="Description" layoutX="417.0" layoutY="337.0" prefHeight="144.0" prefWidth="215.0" />
+                  <Label fx:id="PromptMessage" alignment="CENTER" layoutX="301.0" layoutY="537.0" prefHeight="17.0" prefWidth="347.0" textFill="#b90a0a" />
+                  <Separator layoutX="5.0" layoutY="85.0" prefHeight="3.0" prefWidth="649.0" style="-fx-background-color: #ff2f1f;" />
+                  <Separator layoutX="6.0" layoutY="308.0" prefHeight="3.0" prefWidth="649.0" style="-fx-background-color: #ff2f1f;" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff2f1f" height="496.0" layoutX="27.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 40; -fx-arc-width: 30;" width="224.0" />
+                  <ListView fx:id="ProductsList" layoutX="37.0" layoutY="61.0" onMouseClicked="#ListViewDisplayHandled" prefHeight="474.0" prefWidth="204.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#252525" height="36.0" layoutX="34.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 40; -fx-arc-width: 30;" width="210.0" />
+                  <Label alignment="CENTER" layoutX="55.0" layoutY="15.0" prefHeight="19.0" prefWidth="168.0" text="Select Product" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="DeleteButton" layoutX="329.0" layoutY="498.0" mnemonicParsing="false" onAction="#DeleteMenuProduct" prefHeight="30.0" prefWidth="134.0" style="-fx-border: 5; -fx-border-color: #ff2f1f;" text="Delete Menu Product" />
+               </children>
+            </Pane>
+         </content></ScrollPane>
+      <Separator layoutX="10.0" layoutY="185.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
+      <Separator layoutX="11.0" layoutY="145.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
+      <Label layoutX="42.0" layoutY="150.0" prefHeight="30.0" prefWidth="97.0" text="Home Page">
+         <font>
+            <Font name="Poor Richard" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="homePage" layoutX="11.0" layoutY="147.0" mnemonicParsing="false" onAction="#homePageButtonPressed" opacity="0.0" prefHeight="36.0" prefWidth="143.0" style="-fx-background-color: black;" styleClass="search-button" text="HomePage Button" />
+      <Separator layoutX="11.0" layoutY="226.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
+      <Label alignment="CENTER" layoutX="11.0" layoutY="188.0" prefHeight="37.0" prefWidth="143.0" text="Create Menu">
+         <font>
+            <Font name="Poor Richard" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="CreateMenu" layoutX="11.0" layoutY="188.0" mnemonicParsing="false" onAction="#CreateMenuButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="143.0" text="CreateMenu" />
+      <Separator layoutX="11.0" layoutY="280.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
+      <Label fx:id="EditProduct" alignment="CENTER" layoutX="11.0" layoutY="236.0" prefHeight="37.0" prefWidth="143.0" style="-fx-background-color: #BFBFBF;" text="UpdateMenu">
+         <font>
+            <Font name="Poor Richard" size="19.0" />
+         </font>
+      </Label>
+      <Button layoutX="11.0" layoutY="236.0" mnemonicParsing="false" opacity="0.0" prefHeight="30.0" prefWidth="143.0" text="Update Menu" />
+      <Label fx:id="EditProduct1" alignment="CENTER" layoutX="11.0" layoutY="280.0" prefHeight="37.0" prefWidth="143.0" text="Add Members">
+         <font>
+            <Font name="Poor Richard" size="19.0" />
+         </font>
+      </Label>
+      <Separator layoutX="11.0" layoutY="319.0" prefHeight="3.0" prefWidth="143.0" style="-fx-background-color: black;" />
+      <Button fx:id="AddMembers" layoutX="11.0" layoutY="283.0" mnemonicParsing="false" onAction="#AddMembersButtonPressed" opacity="0.0" prefHeight="30.0" prefWidth="143.0" text="Add Members" />
+   </children>
+</AnchorPane>

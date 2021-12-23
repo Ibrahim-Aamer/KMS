@@ -1,42 +1,49 @@
 package com.example.kms;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class KitchenManagerHomePageController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class HeadChefHomePageController implements Initializable {
 
     public Label firstNameLabel;
     public Label secondNameLabel;
     public Label userNameLabel;
     public Label empTypeLabel;
     @FXML
-    private ResourceBundle resources;
+    private Button AddMembers;
 
     @FXML
-    private URL location;
+    private Button CreateMenu;
 
     @FXML
-    private Button goToMachineMaintenance;
+    private Label EditProduct;
 
     @FXML
-    private Button goToMakeSchedule;
+    private Label EditProduct1;
 
     @FXML
-    private Button goToRequestLeave;
+    private Label EmployeeName;
 
     @FXML
-    private Button goToScheduleButton;
+    private ScrollPane MenuScroll;
+
+    @FXML
+    private Button UpdateMenu;
 
     @FXML
     private Button homePage;
@@ -49,10 +56,20 @@ public class KitchenManagerHomePageController {
     private Stage primaryStage;
 
     @FXML
-    void GoToMakeScheduleButtonPressed(ActionEvent event) {
-
+    void AddMembersButtonPressed(ActionEvent event) {
         try {
-            changeScene("KitchenManagerMakeSchedulePage.fxml", event);
+            changeScene("HeadChefAddMembers.fxml", event);
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    void CreateMenuButtonPressed(ActionEvent event) {
+        try {
+            changeScene("HeadChefCreateMenu.fxml", event);
         }
         catch(Exception e)
         {
@@ -62,46 +79,33 @@ public class KitchenManagerHomePageController {
     }
 
     @FXML
-    void GoToScheduleButtonPressed(ActionEvent event) {
-
-        try {
-            changeScene("KitchenManagerSchedulePage.fxml", event);
-        }
-        catch(Exception e)
-        {
-            System.err.println(e.getMessage());
-        }
+    void HoverHandled(MouseEvent event) {
 
     }
 
     @FXML
-    void goToMachineMaintenanceButtonPressed(ActionEvent event) {
-
+    void UpdateMenuButtonPressed(ActionEvent event) {
         try {
-            changeScene("KitchenManagerMachineMaintenance.fxml", event);
+            changeScene("HeadChefUpdateMenu.fxml", event);
         }
         catch(Exception e)
         {
             System.err.println(e.getMessage());
         }
+    }
+    public void changeScene(String fxml, ActionEvent event) throws IOException {
+
+        //------Following code changes scene to Schedule-------
+        Parent root = FXMLLoader.load(getClass().getResource(fxml));
+        this.primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        this.primaryStage.setScene(scene);
+        this.primaryStage.show();
+        //-----------------------------------------------------
 
     }
-
-    @FXML
-    void goToRequestLeaveButtonPressed(ActionEvent event) {
-        try {
-            changeScene("KitchenManagerRequestLeavePage.fxml", event);
-        }
-        catch(Exception e)
-        {
-            System.err.println(e.getMessage());
-        }
-
-    }
-
     @FXML
     void homePageButtonPressed(ActionEvent event) {
-
 
     }
 
@@ -118,9 +122,9 @@ public class KitchenManagerHomePageController {
 
     }
 
-    @FXML
-    void initialize()
-    {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
         Data data = Data.getDataInstance();
 
         EmployeeKMS emp = data.getMessage().getEmployeeObject();
@@ -132,17 +136,5 @@ public class KitchenManagerHomePageController {
 
     }
 
-    //Generic function to change scene
-    public void changeScene(String fxml, ActionEvent event) throws IOException {
-
-        //------Following code changes scene to Schedule-------
-        Parent root = FXMLLoader.load(getClass().getResource(fxml));
-        this.primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        this.primaryStage.setScene(scene);
-        this.primaryStage.show();
-        //-----------------------------------------------------
-
-    }
 
 }

@@ -24,11 +24,49 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.skin.DatePickerSkin;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class SousChefScheduleController implements Initializable {
+public class JuniorChefScheduleController implements Initializable {
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private Label EmployeeName;
+
+    @FXML
+    private Button ManageInventory;
+
+    @FXML
+    private ScrollPane MenuScroll;
+
+    @FXML
+    private Button PlaceOrder;
+
+    @FXML
+    private Label PromptMessage;
+
+    @FXML
+    private Button RequestLeave;
+
+    @FXML
+    private Button Schedule;
+
+    @FXML
+    private Button homePage;
+
+    @FXML
+    private AnchorPane rootPane;
+
+    @FXML
+    private Button signoutButton;
+
+    @FXML
+    private Label taskDateLabel;
 
     @FXML
     private DatePicker taskDatePicker;
@@ -40,63 +78,31 @@ public class SousChefScheduleController implements Initializable {
     private Label taskNameLabel;
 
     @FXML
-    private Label taskDateLabel;
-
-
-    @FXML
     private ListView<String> tasksList;
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private ScrollPane MenuScroll;
-
-    @FXML
-    private Label PromptMessage;
-
-    @FXML
-    private Button goToMealPrep;
-
-    @FXML
-    private Button goToRequestLeave;
-
-    @FXML
-    private Button goToSchedule;
-
-    @FXML
-    private Button homePage;
-
-    @FXML
-    private AnchorPane rootPane;
-
-    @FXML
-    private Button signoutButton;
     private Stage primaryStage;
 
     @FXML
-    void GoToMealPrepPressed(ActionEvent event) {
+    void ManageInventoryButtonPressed(ActionEvent event) {
 
         try {
-            changeScene("SousChefMealPrep.fxml", event);
+            changeScene("JuniorChefManageInventory.fxml", event);
         }
         catch(Exception e)
         {
             System.err.println(e.getMessage());
         }
-
     }
 
     @FXML
-    void GoToScheduleButtonPressed(ActionEvent event) {
+    void PlaceOrderButtonPressed(ActionEvent event) {
 
-    }
-
-    @FXML
-    void HoverHandled(MouseEvent event) {
+        try {
+            changeScene("JuniorChefPlaceOrder.fxml", event);
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
 
     }
 
@@ -104,31 +110,39 @@ public class SousChefScheduleController implements Initializable {
     void RequestLeaveButtonPressed(ActionEvent event) {
 
         try {
-            changeScene("SousChefRequestLeave.fxml", event);
+            changeScene("JuniorChefRequestLeave.fxml", event);
         }
         catch(Exception e)
         {
             System.err.println(e.getMessage());
         }
+    }
 
+    @FXML
+    void goToSchedule(ActionEvent event) {
+
+        try {
+            changeScene("JuniorChefSchedule.fxml", event);
+        }
+        catch(Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 
     @FXML
     void homePageButtonPressed(ActionEvent event) {
-
         try {
-            changeScene("SousChefHomePage.fxml", event);
+            changeScene("JuniorChefHomePage.fxml", event);
         }
         catch(Exception e)
         {
             System.err.println(e.getMessage());
         }
-
     }
 
     @FXML
     void signOutButtonPressed(ActionEvent event) {
-
         try {
             changeScene("LoginPage.fxml", event);
         }
@@ -136,8 +150,9 @@ public class SousChefScheduleController implements Initializable {
         {
             System.err.println(e.getMessage());
         }
-
     }
+
+
 
     @FXML
     void initialize() {
@@ -156,6 +171,7 @@ public class SousChefScheduleController implements Initializable {
         //-----------------------------------------------------
 
     }
+
 
 
     int selectedTask = -1;

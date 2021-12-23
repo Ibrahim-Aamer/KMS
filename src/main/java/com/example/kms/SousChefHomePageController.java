@@ -4,6 +4,7 @@ package com.example.kms;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,9 +16,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class SousChefHomePageController {
+public class SousChefHomePageController implements Initializable {
 
+    public Label firstNameLabel;
+    public Label secondNameLabel;
+    public Label userNameLabel;
+    public Label empTypeLabel;
     @FXML
     private ScrollPane MenuScroll;
 
@@ -117,4 +124,16 @@ public class SousChefHomePageController {
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        Data data = Data.getDataInstance();
+
+        EmployeeKMS emp = data.getMessage().getEmployeeObject();
+
+        firstNameLabel.setText(emp.getFirstName());
+        secondNameLabel.setText(emp.getLastName());
+        userNameLabel.setText(emp.getUsername());
+        empTypeLabel.setText(emp.getEmployeeType());
+    }
 }
