@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kms.MenuController">
+   <children>
+      <ListView fx:id="listview" fixedCellSize="-8.0" layoutY="68.0" prefHeight="634.0" prefWidth="160.0" style="-fx-background-color: #252525; -fx-border-color: #DADADA; -fx-border-width: 8;" />
+      <Pane layoutX="-2.0" prefHeight="66.0" prefWidth="671.0" style="-fx-background-color: #252525;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e6ecf2" height="33.0" layoutX="416.0" layoutY="17.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 40; -fx-arc-width: 30;" width="198.0" />
+            <TextField fx:id="Tableno" layoutX="434.0" layoutY="21.0" opacity="0.9" prefHeight="25.0" prefWidth="167.0" promptText="Table Number" />
+         </children>
+      </Pane>
+      <Pane layoutX="664.0" prefHeight="700.0" prefWidth="336.0" style="-fx-background-color: #252525;">
+         <children>
+            <Pane layoutX="2.0" layoutY="-7.0" prefHeight="75.0" prefWidth="336.0" style="-fx-background-color: #DADADA;">
+               <children>
+                  <ImageView fitHeight="48.0" fitWidth="53.0" layoutX="251.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@pictures/icons8-cart-64.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="73.0" layoutY="23.0" prefHeight="40.0" prefWidth="135.0" text="CART">
+                     <font>
+                        <Font name="System Bold Italic" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="30.0" layoutY="495.0" prefHeight="18.0" prefWidth="75.0" text="Sub Total " textFill="#fcf5f5">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="Subtotal" layoutX="213.0" layoutY="496.0" onDragDetected="#ActionHandled" prefHeight="18.0" prefWidth="53.0" text="Label" textFill="#f4eded" />
+            <Label fx:id="Discount" layoutX="213.0" layoutY="524.0" onDragDetected="#ActionHandled" prefHeight="18.0" prefWidth="53.0" text="Label" textFill="#faf6f6" />
+            <Label fx:id="GST" layoutX="213.0" layoutY="556.0" onDragDetected="#ActionHandled" prefHeight="18.0" prefWidth="75.0" text="Label" textFill="#fcfafa" />
+            <ComboBox fx:id="CashPayment" layoutX="30.0" layoutY="635.0" onAction="#ActionHandled" prefWidth="150.0" promptText="Cash Payment" />
+            <Label layoutX="30.0" layoutY="523.0" prefHeight="18.0" prefWidth="75.0" text="Discount %" textFill="#f7f1f1">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="555.0" prefHeight="18.0" prefWidth="75.0" text="GST " textFill="#f7f5f5">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="582.0" prefHeight="18.0" prefWidth="75.0" text="Total" textFill="#f4eeee">
+               <font>
+                  <Font name="System Bold Italic" size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="Total" layoutX="197.0" layoutY="582.0" prefHeight="31.0" prefWidth="107.0" text="20000" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold Italic" size="21.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e11022" height="377.0" layoutX="25.0" layoutY="100.0" stroke="#e11022" strokeType="INSIDE" style="-fx-arc-height: 40; -fx-arc-width: 30;" width="283.0" />
+            <ScrollPane layoutX="32.0" layoutY="110.0" onMouseMoved="#TotalCalculated" prefHeight="360.0" prefWidth="268.0">
+               <content>
+                  <GridPane fx:id="CartGrid" prefHeight="102.0" prefWidth="298.0">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <columnConstraints>
+                        <ColumnConstraints />
+                     </columnConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </Pane>
+      <ScrollPane fx:id="MenuScroll" layoutX="161.0" layoutY="68.0" onMouseMoved="#HoverHandled" prefHeight="634.0" prefWidth="502.0">
+         <content>
+            <GridPane fx:id="grid" prefHeight="186.0" prefWidth="234.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
+            </GridPane>
+         </content></ScrollPane>
+      <Circle fill="#f0f2f4" layoutX="80.0" layoutY="75.0" radius="50.0" stroke="#7c888c85" strokeType="INSIDE" strokeWidth="10.0" />
+      <ImageView fitHeight="75.0" fitWidth="86.0" layoutX="43.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/chefgif.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

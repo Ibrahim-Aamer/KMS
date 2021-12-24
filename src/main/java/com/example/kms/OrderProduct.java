@@ -1,6 +1,8 @@
 package com.example.kms;
 
-public class OrderProduct {
+import java.io.Serializable;
+
+public class OrderProduct implements Serializable {
 
     String ProductName;
     int quantity;

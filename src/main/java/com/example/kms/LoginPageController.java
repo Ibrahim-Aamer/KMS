@@ -61,7 +61,7 @@ public class LoginPageController {
 
     @FXML
     void loginButtonPressed(ActionEvent event) throws IOException, ClassNotFoundException, UnknownHostException, InterruptedException {
-        System.out.println("login button pressed");
+        //System.out.println("login button pressed");
         //loadingImage.setVisible(true);
 
         authenticateLoginFromServer(usernameField.getText(),passwordField.getText());
@@ -101,13 +101,13 @@ public class LoginPageController {
             {
                 data.setCurrentEmployeeKms(currEmp);
 
-                changeScene("JuniorChefHomePage.fxml", event);
+                changeScene("System.fxml", event);
             }
             else if(currEmp.getEmployeeType().equals("Waiter"))
             {
                 data.setCurrentEmployeeKms(currEmp);
 
-                changeScene("JuniorChefHomePage.fxml", event);
+                changeScene("Checkout.fxml", event);
             }
         }
         catch(Exception e)
