@@ -1,7 +1,8 @@
 # KITCHEN MANAGEMENT SYSTEM JAVA
+***
 A 3 tier application complete with its database made in sql, kitchen management system is an application that is created in javafx and fxml. It supports multiple clients at the same time as a centralized server has been set up which exchanges messages between the clients.The application serves clients with different roles such as Kitchen Manager, Sous chef etc. It has been made in intellij-idea using scene builder and css.It also makes use of hibernate for easy access and storage to the database which helps replace complex sql queries.The code has also gone unit-testing for developing a quality product. It has been formulated keeping in mind the best practices of Software Design and Analysis. A perfect app for modern day kitchens to maintain inventory , manage and assign tasks, keep track of appliances ,orders and recipes. 
-
 # Client Roles :
+***
 * Employee
 * Head Chef
 * Junior Chef
@@ -9,7 +10,9 @@ A 3 tier application complete with its database made in sql, kitchen management 
 * Kitchen Manager
 * Waiter 
 * Customer
+
 # Functional Requirments
+***
 *  Head chef can create and edit a menu.
 *  Waiter can add orders
 *  Junior chef can manage inventory daily, and place new orders from suppliers
@@ -17,10 +20,12 @@ A 3 tier application complete with its database made in sql, kitchen management 
 *  All employees should be able to access their schedules and request leaves except Kitchen Manager and Head Chef.
 *  Kitchen manager can maintain a schedule/ task sheet for the industrial equipment (cleaning, maintenance, replacement)
 *  Sous chef can add advanced meal preparations (ageing cheese, curingmeats, pickling vegetables, preparing sauces etc.)
-# Collaborators
-@Sillah-Babar
-@Ibrahim-Aamer
-@Aveen
+# Collaborators:
+***
+* @Sillah-Babar
+* @Ibrahim-Aamer
+* @Aveen
+
 ## Images
 ### Login Page
 ![login](https://user-images.githubusercontent.com/90323797/189688976-9561616b-f121-47ef-a50b-5da7e5ef892c.jpg)
